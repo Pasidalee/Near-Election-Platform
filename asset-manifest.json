@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Near-Election-Platform/static/css/main.d87cbb72.chunk.css",
+    "main.js": "/Near-Election-Platform/static/js/main.61a03880.chunk.js",
+    "main.js.map": "/Near-Election-Platform/static/js/main.61a03880.chunk.js.map",
+    "runtime-main.js": "/Near-Election-Platform/static/js/runtime-main.4720dd8e.js",
+    "runtime-main.js.map": "/Near-Election-Platform/static/js/runtime-main.4720dd8e.js.map",
+    "static/css/2.a522c0f2.chunk.css": "/Near-Election-Platform/static/css/2.a522c0f2.chunk.css",
+    "static/js/2.596b4c38.chunk.js": "/Near-Election-Platform/static/js/2.596b4c38.chunk.js",
+    "static/js/2.596b4c38.chunk.js.map": "/Near-Election-Platform/static/js/2.596b4c38.chunk.js.map",
+    "static/js/3.d87ada0d.chunk.js": "/Near-Election-Platform/static/js/3.d87ada0d.chunk.js",
+    "static/js/3.d87ada0d.chunk.js.map": "/Near-Election-Platform/static/js/3.d87ada0d.chunk.js.map",
+    "index.html": "/Near-Election-Platform/index.html",
+    "static/css/2.a522c0f2.chunk.css.map": "/Near-Election-Platform/static/css/2.a522c0f2.chunk.css.map",
+    "static/css/main.d87cbb72.chunk.css.map": "/Near-Election-Platform/static/css/main.d87cbb72.chunk.css.map",
+    "static/js/2.596b4c38.chunk.js.LICENSE.txt": "/Near-Election-Platform/static/js/2.596b4c38.chunk.js.LICENSE.txt",
+    "static/media/bootstrap-icons.css": "/Near-Election-Platform/static/media/bootstrap-icons.ea98e12d.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4720dd8e.js",
+    "static/css/2.a522c0f2.chunk.css",
+    "static/js/2.596b4c38.chunk.js",
+    "static/css/main.d87cbb72.chunk.css",
+    "static/js/main.61a03880.chunk.js"
+  ]
+}
