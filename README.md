@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# NEAR Election Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[link to dapp](https://Pasidalee.github.io/Near-Election-Platform)
 
-## Available Scripts
+## 1. Tech Stack
 
-In the project directory, you can run:
+This boilerplate uses the following tech stack:
 
-### `npm start`
+ [React](https://reactjs.org/) - A JavaScript library for building user interfaces.    
+[near-sdk-as](https://github.com/near/near-sdk-as) - A frontend library for interacting with the Near Protocol Testnet.
+ [Bootstrap](https://getbootstrap.com/) - A CSS framework that provides responsive, mobile-first layouts.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 2. Quick Start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To get this project up running locally, follow these simple steps:
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2.1 Clone the repository:
 
-### `npm run build`
+    git clone https://github.com/Pasidalee/Near-Election-Platform.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2.2 Navigate to the directory:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    cd Near-Election-Platform
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2.3 Install the dependencies:
 
-### `npm run eject`
+    npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 2.4 Run the dapp:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    npm start
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To properly test the dapp you will need to have a Near testnet account. [Create Account](https://wallet.testnet.near.org/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 3. Smart-Contract Deployment
 
-## Learn More
+### 3.1 Navigate to the contract directory:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    cd contract
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 3.2 Install the dependencies:
 
-### Code Splitting
+    yarn install
+    npm install near-cli
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 3.3 Compile the smart contract
 
-### Analyzing the Bundle Size
+    yarn asb
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 3.4 Deploy the smart contract to the Near Protocol Testnet
 
-### Making a Progressive Web App
+    near deploy --accountId={ACCOUNT_ID} --wasmFile=build/release/near-marketplace-voting.wasm
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+This command will deploy the contract to the accountId on the testnet. The accountId now becomes the contract name
 
-### Advanced Configuration
+## Admin Section 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+This section contains node-js terminal scripts to be run to control the operation of the voting platform.
 
-### Deployment
+### 4.1 Setting the admin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    near call {contractname} init '{"admin":"{adminAccount}"}' --accountId={contractname}
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This sets the admin account giving that account access for functions like registering voters and adding new election candidates to the platform.
