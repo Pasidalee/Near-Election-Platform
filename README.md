@@ -7,7 +7,7 @@
 This boilerplate uses the following tech stack:
 
  [React](https://reactjs.org/) - A JavaScript library for building user interfaces.    
-[near-sdk-as](https://github.com/near/near-sdk-as) - A frontend library for interacting with the Near Protocol Testnet.
+[near-sdk-as](https://github.com/near/near-sdk-as) - A frontend library for interacting with the Near Protocol Testnet.  
  [Bootstrap](https://getbootstrap.com/) - A CSS framework that provides responsive, mobile-first layouts.
 
 ## 2. Quick Start
