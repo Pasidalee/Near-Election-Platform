@@ -1,4 +1,4 @@
-import { PersistentUnorderedMap, u128, context, storage } from "near-sdk-as";
+import { PersistentUnorderedMap, storage } from "near-sdk-as";
 
 // @ts-ignore
 @nearBindgen
@@ -7,7 +7,6 @@ export class Candidate {
     name: string;
     age: u32;
     image: string;
-    admin: string;
     votes: u32;
 
     public static fromPayload(payload: Candidate) : Candidate {
@@ -16,7 +15,6 @@ export class Candidate {
         candidate.name = payload.name;
         candidate.age = payload.age;
         candidate.image = payload.image;
-        candidate.admin = candidate.admin;
         return candidate;
     }
 
@@ -31,7 +29,8 @@ export class Voter {
     accountId: string;
     age: u32;
     voted: boolean;
-
+    votedFor: string;
+    verified: boolean
     public static fromPayload(payload: Voter) : Voter {
         const voter = new Voter();
         voter.age = payload.age;
@@ -39,8 +38,12 @@ export class Voter {
         return voter;
     }
 
-    public setVote() : void {
+    public setVote(id: string) : void {
         this.voted = true;
+        this.votedFor = id;
+    }
+    public approve() : void {
+        this.verified = true;
     }
 }
 

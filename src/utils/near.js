@@ -17,7 +17,7 @@ export async function initializeContract() {
         window.walletConnection.account(),
         nearEnv.contractName,
         {
-            viewMethods: ["getCandidate", "getCandidates"],
+            viewMethods: ["getCandidate", "getCandidates", "getVoter", "findAdmin"],
             changeMethods: ["voteCandidate", "setCandidate", "setVoter"],
         }
     );

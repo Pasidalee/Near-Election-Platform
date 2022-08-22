@@ -6,7 +6,7 @@ const AddCandidate = ({ save }) => {
     const [name, setName] = useState("");
     const [image, setImage] = useState("");
     const [age, setAge] = useState(null);
-    const isFormFilled = () => name && image && age;
+    const isFormFilled = () => name && image && age >= 18;
 
     const [show, setShow] = useState(false);
 

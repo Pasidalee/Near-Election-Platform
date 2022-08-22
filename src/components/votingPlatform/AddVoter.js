@@ -6,7 +6,7 @@ const AddVoter = ({ save }) => {
     const [accountId, setAccountId] = useState("");
     const [age, setAge] = useState(null);
     const [voted, setVoted] = useState(false);
-    const isFormFilled = () => accountId && age;
+    const isFormFilled = () => accountId.length > 8 && age >= 18;
 
     const [show, setShow] = useState(false);
 
@@ -38,6 +38,7 @@ const AddVoter = ({ save }) => {
                                 onChange={(e) => {
                                     setAccountId(e.target.value);
                                 }}
+                                required
                                 placeholder="Enter AccountId"
                             />
                         </FloatingLabel>
@@ -50,9 +51,11 @@ const AddVoter = ({ save }) => {
                             <Form.Control
                                 type="number"
                                 placeholder="Age"
+                                min={"18"}
                                 onChange={(e) => {
                                     setAge(e.target.value);
                                 }}
+                                required
                             />
                         </FloatingLabel>
 
