@@ -36,7 +36,7 @@ const App = () => {
                   />
                 </Nav.Item>
               </Nav>
-              <main><CandidatesandVoters /></main>
+              <main><CandidatesandVoters accountId={account.accountId} /></main>
             </Container>
         ) : (
             <Cover name="Election Platform" login={login} coverImg={coverImg} />
