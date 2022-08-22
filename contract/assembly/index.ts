@@ -1,4 +1,4 @@
-import {Candidate, listedCandidates, Voter, listedVoters, getAdmin, setAdmin} from "./model";
+import {Candidate, listedCandidates, Voter, listedVoters, getAdmin, setAdmin, listedOperators} from "./model";
 import { ContractPromiseBatch, context, logging} from "near-sdk-as";
 
 
@@ -102,8 +102,8 @@ export function setVoter(newVoter: Voter) : void {
         throw new Error(`Contract is not initialized yet`);
     }
 
-    const admin = getAdmin();
-    if(admin != context.sender.toString()) {
+    const hasPermission = listedOperators.has(context.sender);
+    if(!hasPermission) {
         throw new Error("You don't have permission");
     }
 
@@ -150,4 +150,21 @@ export function getVoteStatus() : boolean {
     }
 
     return voter.voted;
+}
+
+/**
+ * Used to add operators to the voting platform.
+ * @param accountId AccountID of the operator
+ */
+export function addOperator(accountId : string) : void {
+    let admin = getAdmin();
+    if(admin != context.sender.toString()) {
+        throw new Error("You don't have permission");
+    }
+
+    if(listedOperators.has(accountId)){
+        throw new Error(`${accountId} is already an operator`);
+    }
+
+    listedOperators.add(accountId);
 }

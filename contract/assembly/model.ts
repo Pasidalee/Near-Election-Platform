@@ -1,4 +1,4 @@
-import { PersistentUnorderedMap, u128, context, storage } from "near-sdk-as";
+import { PersistentUnorderedMap, u128, context, storage, PersistentSet } from "near-sdk-as";
 
 // @ts-ignore
 @nearBindgen
@@ -48,7 +48,7 @@ export const listedCandidates = new PersistentUnorderedMap<string,Candidate>('LI
 
 export const listedVoters = new PersistentUnorderedMap<string,Voter>('LISTED_VOTERS');
 
-export const listedOperators = new PersistentUnorderedMap<string, string>('LISTED_OPERATORS');
+export const listedOperators = new PersistentSet<string>('LISTED_OPERATORS');
 
 export function setAdmin(admin: string) : void {
     storage.set<string>("admin", admin);
