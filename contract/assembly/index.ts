@@ -1,4 +1,4 @@
-import {Candidate, listedCandidates, Voter, listedVoters, getAdmin, setAdmin, listedOperators} from "./model";
+import {Candidate, listedCandidates, Voter, listedVoters, getAdmin, setAdmin, listedOperators, getAdmin} from "./model";
 import { ContractPromiseBatch, context, logging} from "near-sdk-as";
 
 
@@ -76,9 +76,7 @@ export function voteCandidate(id: string) : void {
         throw new Error("Voter not found");
     }
 
-    if(voter.age < 18) {
-        throw new Error("Voter must be 18 or more years old to vote");
-    }
+    
 
     if(voter.voted == true) {
         throw new Error("Voter has already voted");
@@ -103,13 +101,18 @@ export function setVoter(newVoter: Voter) : void {
     }
 
     const hasPermission = listedOperators.has(context.sender);
-    if(!hasPermission) {
+    const admin = getAdmin();
+    if(!hasPermission && admin != context.sender) {
         throw new Error("You don't have permission");
     }
 
     let storedVoter = listedVoters.get(newVoter.accountId);
     if(storedVoter != null) {
         throw new Error(`a voter with ${storedVoter.accountId} already exists`);
+    }
+
+    if(newVoter.age < 18) {
+        throw new Error("Voter must be 18 or more years old to vote");
     }
 
     listedVoters.set(newVoter.accountId, newVoter);

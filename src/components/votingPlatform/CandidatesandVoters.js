@@ -18,8 +18,9 @@ const CandidatesandVoters = () => {
     const [loading, setLoading] = useState(false);
 
     const getCandidates = useCallback(async () => {
+        setLoading(true);
         try {
-            setLoading(true);
+          
             setCandidates(await getCandidateList());
         } catch (error) {
             console.log({ error });
@@ -29,13 +30,13 @@ const CandidatesandVoters = () => {
     });
 
     const addCandidate = async (data) => {
+        setLoading(true);
         try {
             console.log(data);
-            setLoading(true);
-            createCandidate(data).then((resp) => {
+            await createCandidate(data).then((resp) => {
+                toast(<NotificationSuccess text="Candidate added successfully." />);
                 getCandidates();
             });
-            toast(<NotificationSuccess text="Candidate added successfully." />);
         } catch (error) {
             console.log({ error });
             toast(<NotificationError text="Failed to create a candidate." />);
@@ -45,22 +46,24 @@ const CandidatesandVoters = () => {
     };
 
     const addVoter = async (data) => {
+        setLoading(true);
         try {
             console.log(data);
-            setLoading(true);
-            registerVoter(data).then((resp) => {
-
+           
+            await registerVoter(data).then((resp) => {
+                toast(<NotificationSuccess text="Voter registered successfully." />);
+            
             });
-            toast(<NotificationSuccess text="Voter registered successfully." />);
         } catch (error) {
             console.log({ error });
-            toast(<NotificationError text="Failed to register the voter." />);
+            toast(<NotificationError text={JSON.parse(error.message).kind.ExecutionError.split('Smart contract panicked:')[1].split(',')[0]} />);
         } finally {
             setLoading(false);
         }
     };
 
     const vote = async (id) => {
+        setLoading(true);
         try {
             console.log(id);
             await voteCandidate({
@@ -68,7 +71,8 @@ const CandidatesandVoters = () => {
             }).then((resp) => getCandidates());
             toast(<NotificationSuccess text="voted the candidate successfully" />);
         } catch (error) {
-            toast(<NotificationError text="Failed to vote the candidate." />);
+            toast(<NotificationError text={JSON.parse(error.message).kind.ExecutionError.split('Smart contract panicked:')[1].split(',')[0]} />);
+            console.log(JSON.parse(error.message).kind.ExecutionError.split('Smart contract panicked:')[1].split(',')[0]);
         } finally {
             setLoading(false);
         }
