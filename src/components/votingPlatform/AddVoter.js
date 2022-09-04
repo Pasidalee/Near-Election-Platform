@@ -24,7 +24,7 @@ const AddVoter = ({ save }) => {
             </Button>
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>New Candidate</Modal.Title>
+                    <Modal.Title>New Voter</Modal.Title>
                 </Modal.Header>
                 <Form>
                     <Modal.Body>
@@ -74,7 +74,7 @@ const AddVoter = ({ save }) => {
                             handleClose();
                         }}
                     >
-                        Save Candidate
+                        Save Voter
                     </Button>
                 </Modal.Footer>
             </Modal>
