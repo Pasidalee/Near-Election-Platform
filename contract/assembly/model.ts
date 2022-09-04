@@ -1,4 +1,4 @@
-import { PersistentUnorderedMap, u128, context, storage } from "near-sdk-as";
+import { PersistentUnorderedMap, u128, context, storage, PersistentSet } from "near-sdk-as";
 
 // @ts-ignore
 @nearBindgen
@@ -7,7 +7,6 @@ export class Candidate {
     name: string;
     age: u32;
     image: string;
-    admin: string;
     votes: u32;
 
     public static fromPayload(payload: Candidate) : Candidate {
@@ -16,7 +15,7 @@ export class Candidate {
         candidate.name = payload.name;
         candidate.age = payload.age;
         candidate.image = payload.image;
-        candidate.admin = candidate.admin;
+        candidate.votes = 0;
         return candidate;
     }
 
@@ -36,6 +35,7 @@ export class Voter {
         const voter = new Voter();
         voter.age = payload.age;
         voter.accountId = payload.accountId;
+        voter.voted = false;
         return voter;
     }
 
@@ -47,6 +47,8 @@ export class Voter {
 export const listedCandidates = new PersistentUnorderedMap<string,Candidate>('LISTED_CANDIDATES');
 
 export const listedVoters = new PersistentUnorderedMap<string,Voter>('LISTED_VOTERS');
+
+export const listedOperators = new PersistentSet<string>('LISTED_OPERATORS');
 
 export function setAdmin(admin: string) : void {
     storage.set<string>("admin", admin);
